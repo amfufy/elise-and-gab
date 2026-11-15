@@ -569,7 +569,8 @@ const CONFIG = {
   photos: [],
   // Optional: a link to an .mp3 of the couple's song. Leave empty to play the built-in music box melody.
   songUrl: "",
-  credit: "Website by Pvblicly"
+  credit: "Website by Pvblicly",
+  creditUrl: "https://www.facebook.com/profile.php?id=61596600240794"   // link for the credit line; empty = plain text
 };
 
 /* =========================================================
@@ -667,7 +668,7 @@ $("#lightbox").addEventListener("click",()=>$("#lightbox").classList.remove("sho
 
 $("#footNames").textContent = `${CONFIG.bride} & ${CONFIG.groom}`;
 $("#footDate").textContent = fmt({ month:"2-digit", day:"2-digit", year:"numeric" }).replace(/\//g," . ");
-$("#credit").textContent = CONFIG.credit;
+(()=>{const el=$("#credit");if(CONFIG.creditUrl){const l=document.createElement("a");l.href=CONFIG.creditUrl;l.target="_blank";l.rel="noopener";l.textContent=CONFIG.credit;l.style.color="inherit";el.appendChild(l);}else{el.textContent=CONFIG.credit;}})();
 
 /* countdown */
 function tick(){
